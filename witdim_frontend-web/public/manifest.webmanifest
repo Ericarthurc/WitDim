@@ -1,0 +1,12 @@
+{
+  "name": "Wildwood Technology Database Manage",
+  "short_name": "WTDM",
+  "theme_color": "#fa1b49",
+  "background_color": "#212121",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Database",
+  "orientation": "any",
+  "icons": []
+}

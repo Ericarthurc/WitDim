@@ -1,0 +1,21 @@
+html {
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #212121;
+  color: #ffffff;
+}
+
+/* #fa1b49 */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  text-rendering: geometricPrecision;
+}
