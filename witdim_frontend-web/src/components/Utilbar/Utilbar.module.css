@@ -1,0 +1,13 @@
+.Utilbar {
+  display: flex;
+  height: 35px;
+  width: 100%;
+  max-width: 575px;
+  background: #fa1b49;
+  border: 1.5px solid #fa1b49;
+  border-radius: 0.3rem;
+  box-shadow: rgb(0 0 0 / 15%) 0px 5px 10px 0px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+}

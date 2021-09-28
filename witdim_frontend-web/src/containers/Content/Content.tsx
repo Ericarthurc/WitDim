@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import QRCode from "qrcode.react";
 
-import Search from "../Search/Search";
+import Utilbar from "../../components/Utilbar/Utilbar";
+import Search from "../../components/Search/Search";
 
 import { getItems, getItemsBySearch } from "../../api/itemapi";
 
@@ -68,6 +69,7 @@ const Content = () => {
 
   return (
     <div className={styles["Content"]}>
+      <Utilbar />
       <Search search={searchQuery} searchUpdater={searchSubmit} />
       {items}
     </div>
