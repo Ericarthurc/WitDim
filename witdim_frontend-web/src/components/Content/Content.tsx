@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import QRCode from "qrcode.react";
+
+import styles from "./Content.module.css";
 
 const Content = () => {
   const [itemDataBase, setItemDatabase] = useState<Items[]>([]);
@@ -22,17 +25,28 @@ const Content = () => {
 
   const items = itemDataBase.map((item) => {
     return (
-      <div key={item.id}>
-        <span>{item.id}</span>
-        <span>{item.product}</span>
-        <span>{item.serial}</span>
-        <span>{item.condition}</span>
-        <p></p>
+      <div className={styles["Content-Item_Container"]} key={item.id}>
+        <div className={styles["Item_Container-Info"]}>
+          {/* <p className={styles["Item_Info-Label"]}>Id:</p> */}
+          {/* <p className={styles["Item_Info-Data"]}>{item.id}</p> */}
+          <p className={styles["Item_Info-Label"]}>Product:</p>
+          <p className={styles["Item_Info-Data"]}>{item.product}</p>
+          <p className={styles["Item_Info-Label"]}>Serial:</p>
+          <p className={styles["Item_Info-Data"]}>{item.serial}</p>
+          <p className={styles["Item_Info-Label"]}>Condition:</p>
+          <p className={styles["Item_Info-Data"]}>{item.condition}</p>
+        </div>
+        <div className={styles["Item_Container-Buttons"]}>
+          <button>QR</button>
+          <button>Update</button>
+          <button>Delete</button>
+        </div>
+        {/* <QRCode value={item.id} /> */}
       </div>
     );
   });
 
-  return <div className="Content">{items}</div>;
+  return <div className={styles["Content"]}>{items}</div>;
 };
 
 export default Content;

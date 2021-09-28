@@ -6,12 +6,14 @@ const Navbar = () => {
   return (
     <header>
       <nav className={styles["navbar"]}>
-        <Link to="/" className={styles["navbar-link"]}>
-          TEST
-        </Link>
-        <Link to="/login" className={styles["navbar-link"]}>
-          LOGIN
-        </Link>
+        <div className={styles["navbar-links"]}>
+          <Link to="/" className={styles["navbar-link"]}>
+            TEST
+          </Link>
+          <Link to="/login" className={styles["navbar-link"]}>
+            LOGIN
+          </Link>
+        </div>
       </nav>
     </header>
   );

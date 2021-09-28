@@ -4,11 +4,16 @@ header {
 
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   height: 45px;
-  background: #171921;
+  /* background: #171921; */
+  background: #fa1b49;
   box-shadow: rgb(0 0 0/ 15%) 0px 5px 10px 0px;
+}
+
+.navbar-links {
+  margin-right: 10px;
 }
 
 .navbar-link {
@@ -18,5 +23,5 @@ header {
 }
 
 .navbar-link:hover {
-  color: #fa1b49;
+  color: #171921;
 }
