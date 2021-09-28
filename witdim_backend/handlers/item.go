@@ -38,6 +38,22 @@ func GetItemHandler(c *fiber.Ctx) error {
 }
 
 /*
+GetItemsSearchHandler | @Desc: Get items by search |
+@Method: GET |
+@Route: "api/v1/items/search/?q=''" |
+@Auth: Private
+*/
+func GetItemsSearchHandler(c *fiber.Ctx) error {
+	searchQuery := c.Query("q")
+	item, err := models.GetItemsSearch(searchQuery)
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{"success": false, "data": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"success": true, "data": item})
+}
+
+/*
 CreateItemHandler | @Desc: Create new item |
 @Method: POST |
 @Route: "api/v1/items" |

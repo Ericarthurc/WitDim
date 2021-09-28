@@ -2,4 +2,4 @@
 
 ### Go_lang api backend
 
-### Version 0.0.1
+### Version 0.0.2

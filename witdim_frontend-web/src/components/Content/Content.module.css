@@ -24,10 +24,12 @@
 
 .Item_Info-Label {
   text-align: end;
+  word-break: break-all;
 }
 
 .Item_Info-Data {
   text-align: start;
+  word-break: break-all;
 }
 
 .Item_Container-Buttons {

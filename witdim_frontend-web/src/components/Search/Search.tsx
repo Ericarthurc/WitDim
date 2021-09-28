@@ -2,14 +2,12 @@ import { useState } from "react";
 
 import styles from "./Search.module.css";
 
-const Search = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+interface SearchProps {
+  search: string;
+  searchUpdater: (e: string) => Promise<void>;
+}
 
-  const searchSubmit = (e: string) => {
-    console.log(e);
-    setSearchQuery(e);
-  };
-
+const Search: React.FC<SearchProps> = (props) => {
   return (
     <div style={{ marginBottom: "25px" }}>
       <div className={styles["Search-Input_Container"]}>
@@ -30,8 +28,8 @@ const Search = () => {
           autoCorrect="off"
           spellCheck="false"
           maxLength={150}
-          value={searchQuery}
-          onChange={(e) => searchSubmit(e.target.value)}
+          value={props.search}
+          onChange={(e) => props.searchUpdater(e.target.value)}
         ></input>
       </div>
     </div>

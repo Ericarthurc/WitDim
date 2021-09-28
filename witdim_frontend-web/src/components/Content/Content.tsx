@@ -1,24 +1,44 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import QRCode from "qrcode.react";
+
+import Search from "../Search/Search";
+
+import { getItems, getItemsBySearch } from "../../api/itemapi";
 
 import styles from "./Content.module.css";
 
 const Content = () => {
   const [itemDataBase, setItemDatabase] = useState<Items[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
-    getItemDataBase();
+    getItemsHandler();
   }, []);
 
-  const getItemDataBase = async () => {
+  const searchSubmit = async (e: string) => {
+    setSearchQuery(e);
+    await getItemsByQueryHander(e);
+  };
+
+  const getItemsHandler = async (): Promise<void> => {
     try {
-      const { data } = await axios.get<ItemDatabase>("/api/v1/items");
-      if (!data.success) {
-        throw new Error("Database failure");
-      }
-      setItemDatabase(data.data);
+      const items = await getItems();
+      setItemDatabase(items);
     } catch (error) {
+      throw new Error(`${error}`);
+    }
+  };
+
+  const getItemsByQueryHander = async (search: string): Promise<void> => {
+    if (search.length == 0) {
+      getItemsHandler();
+      return;
+    }
+    try {
+      const items = await getItemsBySearch(search);
+      setItemDatabase(items);
+    } catch (error) {
+      setItemDatabase([]);
       throw new Error(`${error}`);
     }
   };
@@ -46,7 +66,12 @@ const Content = () => {
     );
   });
 
-  return <div className={styles["Content"]}>{items}</div>;
+  return (
+    <div className={styles["Content"]}>
+      <Search search={searchQuery} searchUpdater={searchSubmit} />
+      {items}
+    </div>
+  );
 };
 
 export default Content;

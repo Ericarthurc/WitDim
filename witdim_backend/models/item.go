@@ -8,6 +8,8 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/x/bsonx"
 )
 
 type Item struct {
@@ -15,6 +17,13 @@ type Item struct {
 	Product   string             `json:"product" bson:"product"`
 	Serial    string             `json:"serial" bson:"serial"`
 	Condition string             `json:"condition" bson:"condition"`
+}
+
+func CreateItemSchema() {
+	// Make indexes for item collection
+	_, _ = database.ItemsCollection.Indexes().CreateOne(database.Ctx, mongo.IndexModel{
+		Keys: bson.D{{Key: "product", Value: bsonx.String("text")}, {Key: "serial", Value: bsonx.String("text")}, {Key: "condition", Value: bsonx.String("text")}},
+	})
 }
 
 func GetItem(id string) (Item, error) {
@@ -48,6 +57,31 @@ func GetItems() ([]Item, error) {
 			return items, err
 		}
 		items = append(items, item)
+	}
+
+	return items, nil
+}
+
+func GetItemsSearch(s string) ([]Item, error) {
+	var item Item
+	var items []Item
+
+	cursor, err := database.ItemsCollection.Find(database.Ctx, bson.M{"$text": bson.M{"$search": s}})
+	if err != nil {
+		defer cursor.Close(database.Ctx)
+		return items, err
+	}
+
+	for cursor.Next(database.Ctx) {
+		err := cursor.Decode(&item)
+		if err != nil {
+			return items, err
+		}
+		items = append(items, item)
+	}
+
+	if len(items) == 0 {
+		return nil, errors.New("no document found")
 	}
 
 	return items, nil
