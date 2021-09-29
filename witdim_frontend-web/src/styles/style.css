@@ -28,7 +28,7 @@ p {
 button {
   text-decoration: none;
   border-bottom: none;
-  border: 1.5px solid #fa1b49;
+  border: 1.5px solid #5b6abe;
   border-radius: 0.3rem;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   margin: 0px 2%;
@@ -41,7 +41,7 @@ button {
 }
 
 button:hover {
-  background-color: #fa1b49;
+  background-color: #5b6abe;
   cursor: pointer;
 }
 
@@ -49,9 +49,9 @@ a {
   display: flex;
   text-decoration: none;
   border-bottom: none;
-  border: 1.5px solid #fa1b49;
+  /* border: 1.5px solid #5b6abe; */
   border-radius: 0.3rem;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  /* box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); */
   margin: 0px 2%;
   background-color: #171921;
   text-align: center;
@@ -64,6 +64,6 @@ a {
 }
 
 a:hover {
-  background-color: #fa1b49;
+  background-color: #5f0315;
   cursor: pointer;
 }
