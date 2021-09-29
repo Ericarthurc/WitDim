@@ -1,18 +1,17 @@
-.Content {
+.HomeRoute-Container {
   display: flex;
   flex-direction: column;
   margin: 0% 5%;
   align-items: center;
 }
 
-.Content-Item_Container {
-  /* display: flex; */
+.HomeRoute-Item_Container {
   margin-bottom: 30px;
-  /* width: 100%; */
   width: 450px;
   border: 2px solid #fa1b49;
   border-radius: 0.3rem;
-  box-shadow: rgb(0 0 0 / 15%) 0px 5px 10px 0px;
+  /* box-shadow: rgb(0 0 0 / 15%) 0px 5px 10px 0px; */
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .Item_Container-Info {
@@ -40,7 +39,7 @@
 }
 
 @media only screen and (max-width: 641px) {
-  .Content-Item_Container {
+  .HomeRoute-Item_Container {
     width: 90%;
   }
 }

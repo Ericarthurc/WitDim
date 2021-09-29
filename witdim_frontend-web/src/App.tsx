@@ -1,13 +1,22 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Content from "./containers/Content/Content";
+import Utilbar from "./containers/Utilbar/Utilbar";
+import HomeRoute from "./containers/HomeRoute/HomeRoute";
+import AddRoute from "./containers/AddRoute/AddRoute";
 
 const App = () => {
   return (
     <Router>
-      {/* Placeholder logo LoL */}
       <h1 style={{ textAlign: "center" }}>WitDim</h1>
-      <Content />
+      <Utilbar />
+      <Switch>
+        <Route path="/add">
+          <AddRoute />
+        </Route>
+        <Route path="/">
+          <HomeRoute />
+        </Route>
+      </Switch>
     </Router>
   );
 };

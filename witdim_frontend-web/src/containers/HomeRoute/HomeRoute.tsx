@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import QRCode from "qrcode.react";
 
-import Utilbar from "../../components/Utilbar/Utilbar";
 import Search from "../../components/Search/Search";
 
-import { getItems, getItemsBySearch } from "../../api/itemapi";
+import { getItems, getItemsBySearch, deleteItemById } from "../../api/itemapi";
 
-import styles from "./Content.module.css";
+import styles from "./HomeRoute.module.css";
 
-const Content = () => {
-  const [itemDataBase, setItemDatabase] = useState<Items[]>([]);
+// I MAY RENAME THIS CONTAINER!
+// UNLESS I MOVE AWAY FROM ROUTE SWITCHING AND GO FOR MORE OF A SPA
+
+const HomeRoute = () => {
+  const [itemDataBase, setItemDatabase] = useState<Item[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
@@ -24,6 +26,12 @@ const Content = () => {
   const getItemsHandler = async (): Promise<void> => {
     try {
       const items = await getItems();
+      // Handle empty itmes[] from api
+      if (items == null) {
+        // Reset itemsDataBase to [] if last item was deleted; for rerender!
+        setItemDatabase([]);
+        return;
+      }
       setItemDatabase(items);
     } catch (error) {
       throw new Error(`${error}`);
@@ -44,12 +52,20 @@ const Content = () => {
     }
   };
 
+  // NEEDS DELETE VARIFICATION! 2-Step Delete and notification!
+  const deleteItemByIdHandler = async (id: string): Promise<void> => {
+    try {
+      await deleteItemById(id);
+      getItemsHandler();
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  };
+
   const items = itemDataBase.map((item) => {
     return (
-      <div className={styles["Content-Item_Container"]} key={item.id}>
+      <div className={styles["HomeRoute-Item_Container"]} key={item.id}>
         <div className={styles["Item_Container-Info"]}>
-          {/* <p className={styles["Item_Info-Label"]}>Id:</p> */}
-          {/* <p className={styles["Item_Info-Data"]}>{item.id}</p> */}
           <p className={styles["Item_Info-Label"]}>Product:</p>
           <p className={styles["Item_Info-Data"]}>{item.product}</p>
           <p className={styles["Item_Info-Label"]}>Serial:</p>
@@ -60,7 +76,7 @@ const Content = () => {
         <div className={styles["Item_Container-Buttons"]}>
           <button>QR</button>
           <button>Update</button>
-          <button>Delete</button>
+          <button onClick={() => deleteItemByIdHandler(item.id)}>Delete</button>
         </div>
         {/* <QRCode value={item.id} /> */}
       </div>
@@ -68,12 +84,11 @@ const Content = () => {
   });
 
   return (
-    <div className={styles["Content"]}>
-      <Utilbar />
+    <div className={styles["HomeRoute-Container"]}>
       <Search search={searchQuery} searchUpdater={searchSubmit} />
       {items}
     </div>
   );
 };
 
-export default Content;
+export default HomeRoute;

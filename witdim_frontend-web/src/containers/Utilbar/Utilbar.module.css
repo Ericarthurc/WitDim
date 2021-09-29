@@ -1,3 +1,10 @@
+.Utilbar-Container {
+  display: flex;
+  flex-direction: column;
+  margin: 0% 5%;
+  align-items: center;
+}
+
 .Utilbar {
   display: flex;
   height: 35px;

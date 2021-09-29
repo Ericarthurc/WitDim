@@ -1,12 +1,21 @@
 /// <reference types="vite/client" />
 
-interface ItemDatabase {
+// Incoming axios {data} object
+interface HTTPRequestItemAPI {
   success: boolean;
-  data: Items[];
+  data: Item[];
 }
 
-interface Items {
+// {data: {data}} array objects
+interface Item {
   id: string;
+  product: string;
+  serial: string;
+  condition: string;
+}
+
+// Item sent for PUT and POST requests
+interface FormItem {
   product: string;
   serial: string;
   condition: string;

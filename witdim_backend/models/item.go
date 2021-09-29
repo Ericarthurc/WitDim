@@ -87,6 +87,8 @@ func GetItemsSearch(s string) ([]Item, error) {
 	return items, nil
 }
 
+// PREVENT EMPTY INPUTS!!!
+// NEEDS VALIDATION!
 func CreateItem(i Item) (string, error) {
 	result, err := database.ItemsCollection.InsertOne(database.Ctx, i)
 	if err != nil {
@@ -95,6 +97,7 @@ func CreateItem(i Item) (string, error) {
 	return fmt.Sprintf("%v", result.InsertedID), err
 }
 
+// NEEDS A LOT OF WORK!
 func UpdateItem(id string, i Item) error {
 	objectId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
