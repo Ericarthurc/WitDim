@@ -11,11 +11,14 @@ const App = () => {
       <h1 style={{ textAlign: "center" }}>WitDim</h1>
       <Utilbar />
       <Switch>
-        <Route path="/scan">
+        {/* <Route path="/scan">
           <ScanRoute />
-        </Route>
+        </Route> */}
         <Route path="/add">
           <AddRoute />
+        </Route>
+        <Route path="/:id">
+          <HomeRoute />
         </Route>
         <Route path="/">
           <HomeRoute />

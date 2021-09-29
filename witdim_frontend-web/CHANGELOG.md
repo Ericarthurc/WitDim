@@ -7,6 +7,11 @@ Addition of markdown posts will not be versioned or require a changelog update.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.8] - 2021-09-29
+
+- Removed `/Scan` route and I am trying QR codes that redirect into the web app
+- UI still heavily in development
+
 ## [0.0.7] - 2021-09-29
 
 - Work on `/scan` route | not a huge fan of the scanning api right now

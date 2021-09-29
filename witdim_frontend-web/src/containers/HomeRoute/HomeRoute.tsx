@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Search from "../../components/Search/Search";
 
@@ -16,13 +16,14 @@ const HomeRoute = () => {
   const [itemDataBase, setItemDatabase] = useState<Item[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  let location = useLocation();
-  const param = new URLSearchParams(location.search).get("id");
+  // let location = useLocation();
+  // const param = new URLSearchParams(location.search).get("id");
+  let { id } = useParams<any>();
 
   useEffect(() => {
-    if (param) {
-      setSearchQuery(param);
-      getItemsByQueryHander(param);
+    if (id) {
+      setSearchQuery(id);
+      getItemsByQueryHander(id);
       return;
     }
     getItemsHandler();
@@ -66,6 +67,7 @@ const HomeRoute = () => {
   const deleteItemByIdHandler = async (id: string): Promise<void> => {
     try {
       await deleteItemById(id);
+      setSearchQuery("");
       getItemsHandler();
     } catch (error) {
       throw new Error(`${error}`);
