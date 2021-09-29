@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import QRCode from "qrcode.react";
+import React from "react";
+import ReactDOM from "react-dom";
+import { useLocation } from "react-router-dom";
 
 import Search from "../../components/Search/Search";
 
@@ -14,7 +16,15 @@ const HomeRoute = () => {
   const [itemDataBase, setItemDatabase] = useState<Item[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  let location = useLocation();
+  const param = new URLSearchParams(location.search).get("id");
+
   useEffect(() => {
+    if (param) {
+      setSearchQuery(param);
+      getItemsByQueryHander(param);
+      return;
+    }
     getItemsHandler();
   }, []);
 

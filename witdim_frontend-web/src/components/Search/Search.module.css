@@ -42,3 +42,23 @@
   color: #9aa0a6;
   fill: currentColor;
 }
+
+.Search-Clear {
+  width: 28px;
+  margin-left: 5px;
+  align-self: center;
+  margin-bottom: -1px;
+  margin-right: 5px;
+  color: #9aa0a6;
+  fill: currentColor;
+  background: transparent;
+}
+
+.Search-Clear:hover {
+  background: transparent;
+}
+
+.Search-Clear svg:hover {
+  color: #fa1b49;
+  fill: currentColor;
+}
